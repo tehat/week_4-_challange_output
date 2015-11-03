@@ -1,17 +1,17 @@
 var express = require("express");
 var router = express.Router();
 var path = require('path');
-
-//router.route('/data')
-//    .get(function(req, res){
-//        res.send("Hello");
-//    })
-//    .post(function(req, res){
-//        console.log(req.body.valueInput);
-//        res.send({message: "Hello " + req.body.valueInput});
-//    });
+var bodyParser = require('body-parser');
 
 
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({expanded: true}));
+
+
+router.post("/data", function (req, res) {
+    console.log(req);
+    res.send("");
+});
 router.get("/output", function(req, res){
     console.log("hello now!");
     res.send(console.log("server has connected"));
