@@ -1,12 +1,7 @@
-/**
- * Created by owner on 11/3/15.
- */
-var peopleInfo = {};
-
-
 $(document).ready(function(){
 
     $("#employeeForm").submit(function(event) {
+        var peopleInfo = {};
         event.preventDefault();
 
 
@@ -21,11 +16,13 @@ $(document).ready(function(){
 
 function sendData (peopleInfo) {
 
-    console.log("Here is sendData: " + peopleInfo);
     $.ajax({
         type: "POST",
         url: "/data",
         data: peopleInfo,
+        beforeSend: function(){
+            console.log("This is people ", peopleInfo);
+        },
         success: function (data) {
             console.log(data);
         }

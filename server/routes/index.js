@@ -9,9 +9,10 @@ router.use(bodyParser.urlencoded({expanded: true}));
 
 
 router.post("/data", function (req, res) {
-    console.log(req);
+    console.log(req.body.numOfEmployees);
     res.send("");
 });
+
 router.get("/output", function(req, res){
     console.log("hello now!");
     res.send(console.log("server has connected"));
