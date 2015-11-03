@@ -12,6 +12,12 @@ var path = require('path');
 //    });
 
 
+router.get("/output", function(req, res){
+    console.log("hello now!");
+    res.send(console.log("server has connected"));
+
+});
+
 
 router.get("/*", function(req, res){
     var file = req.params[0] || "/assets/views/input.html";
