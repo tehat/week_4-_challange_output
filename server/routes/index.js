@@ -14,7 +14,7 @@ var path = require('path');
 
 
 router.get("/*", function(req, res){
-    var file = req.params[0] || "input.html";
+    var file = req.params[0] || "/assets/views/input.html";
     res.sendFile(path.join(__dirname, "../public", file));
 });
 
