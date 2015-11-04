@@ -20,8 +20,6 @@ console.log("jquery is working");
             //append to DOM list of employees
 
             console.log(output);
-
-            console.log("Gathering info for array");
         }
     })
 
