@@ -5,9 +5,7 @@ var employeeArray = [];
 var employeeNumberOfYears = [];
 var employeeSalaries = [];
 
-console.log("javascript is working");
 $(document).ready(function(){
-console.log("jquery is working");
     $.ajax({
         type: "GET",
         url: "/output",

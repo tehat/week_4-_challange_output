@@ -3,7 +3,7 @@ var router = express.Router();
 var path = require('path');
 var bodyParser = require('body-parser');
 
-var mongoose = require('mongoose')
+var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 //CHECK BODYPARSER IN CORRECT AREAS
@@ -19,18 +19,18 @@ mongoose.model('Person', new Schema ({
     "salary": String,
     "yearsOfService":String
 },
-    {collection:'People'}));
+    {collection:'dummy'}));
 
 var Person = mongoose.model('Person');
 
 
 router.get("/output", function(req, res){
-    Person.find({}), function(err,data){
+    Person.find({}, function(err,data){
         if (err) {
             console.log("Error : ", err)
         }
-        res.send(data)
-    }
+        res.send(data);
+    })
 });
 
 
