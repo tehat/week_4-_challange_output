@@ -6,6 +6,8 @@ var peopleInfo = {};
 
 $(document).ready(function(){
 
+
+
     $("#employeeForm").submit(function(event) {
         event.preventDefault();
 
@@ -16,7 +18,7 @@ $(document).ready(function(){
         sendData(peopleInfo);
         console.log(peopleInfo);
     });
-
+            //POSITIONING OF CALLS
 });
 
 function sendData (peopleInfo) {
