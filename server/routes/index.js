@@ -10,9 +10,12 @@ router.use(bodyParser.urlencoded({expanded: true}));
 
 
 router.post("/data", function (req, res) {
+
     console.log(req);
     res.send(data);
 });      //data is not working UNDEFINDED
+
+
 
 router.get("/output", function(req, res){
     console.log("hello now!");
