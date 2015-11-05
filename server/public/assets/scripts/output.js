@@ -67,12 +67,14 @@ function calcTotalYears(){
     totalEmployeeYears = 0;
 
     for(var i = 0; i < employeeArray.length; i++) {
-        employeeNumberOfYears.push(parseInt(employeeArray[i].yearsOfService));
+        employeeNumberOfYears.push(parseInt(employeeArray[i].years));
     }
     for(var i = 0; i < employeeNumberOfYears.length; i++){
         totalEmployeeYears += employeeNumberOfYears[i];
 
     }
+    console.log(employeeNumberOfYears);
+
     console.log(totalEmployeeYears);
     $("#totalYears").children('span').text(totalEmployeeYears);
 

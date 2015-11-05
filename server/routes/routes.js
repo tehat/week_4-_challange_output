@@ -29,6 +29,7 @@ router.get("/output", function(req, res){
         if (err) {
             console.log("Error : ", err)
         }
+        console.log(data);
         res.send(data);
     })
 });
