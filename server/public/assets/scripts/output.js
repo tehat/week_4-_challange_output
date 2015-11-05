@@ -2,6 +2,7 @@
  * Created by Thomas on 11/3/15.
  */
 var employeeArray = [];
+
 var employeeNumberOfYears = [];
 var totalEmployeeYears = 0;
 var averageEmployeeYears = 0;
@@ -12,6 +13,35 @@ var averageSalary = 0;
 
 
 $(document).ready(function(){
+
+    $('#employeeList').on('click', '.delete', deletePerson);
+
+
+
+    //$.ajax({
+    //    type: "GET",
+    //    url: "/output",
+    //    success: function(output){
+    //        //populate array with objects
+    //        //calculate all totals and averages
+    //        employeeArray = output;
+    //
+    //        appendToDOM();
+    //        calcTotalYears();
+    //        calcAverageYears();
+    //        calcTotalSalaries();
+    //        calcAverageSalaries();
+    //
+    //        //append to DOM list of employees
+    //
+    //        console.log(output);
+    //    }
+    //});
+getData();
+});
+
+
+function getData(){
     $.ajax({
         type: "GET",
         url: "/output",
@@ -21,26 +51,29 @@ $(document).ready(function(){
             employeeArray = output;
 
             appendToDOM();
-            calcTotalYears();
-            calcAverageYears();
-            calcTotalSalaries();
-            calcAverageSalaries();
+
 
             //append to DOM list of employees
 
             console.log(output);
         }
     });
+}
 
-});
 
 function calcTotalYears(){
+
+    employeeNumberOfYears = [];
+    totalEmployeeYears = 0;
+
     for(var i = 0; i < employeeArray.length; i++) {
         employeeNumberOfYears.push(parseInt(employeeArray[i].yearsOfService));
     }
     for(var i = 0; i < employeeNumberOfYears.length; i++){
         totalEmployeeYears += employeeNumberOfYears[i];
+
     }
+    console.log(totalEmployeeYears);
     $("#totalYears").children('span').text(totalEmployeeYears);
 
     //pull the years an employee has worked and populate employeeNumberOfYears[]
@@ -50,12 +83,19 @@ function calcTotalYears(){
 }
 
 function calcAverageYears(){
+
+    averageEmployeeYears = 0;
+
     averageEmployeeYears =  totalEmployeeYears / employeeArray.length;
     //take total years and divide by # of employees(array.length)
     $('#averageYears').children('span').text(averageEmployeeYears);
 }
 
 function calcTotalSalaries(){
+
+    totalEmployeeSalaries = [];
+    totalSalaries = 0;
+
     for(var i = 0; i < employeeArray.length; i++) {
         totalEmployeeSalaries.push(parseInt(employeeArray[i].salary));
     }
@@ -70,6 +110,8 @@ function calcTotalSalaries(){
 
 function calcAverageSalaries(){
 
+    averageSalary = 0;
+
     averageSalary += totalSalaries / employeeArray.length;
 
     $('#averageSalary').children('span').text(averageSalary);
@@ -77,15 +119,34 @@ function calcAverageSalaries(){
 }
 
 
-function appendToDOM(){
+function deletePerson(){
+    var deletedId = {"id" : $(this).data("id")};
 
+    console.log("Meaningful Log: ", deletedId);
+
+
+    $.ajax({
+        type: "DELETE",
+        url: "/output",
+        data: deletedId,
+        success: function(data){
+    console.log(totalSalaries);
+            getData();
+        }
+    })
+}
+
+
+
+function appendToDOM(){
+    $("#employeeList").empty();
     for(var i = 0; i < employeeArray.length; i++) {
         $("#employeeList").append("<div class='employeedata'>" +
             "<div class='well col-md-3'>" + employeeArray[i].firstName + "</div>" +
             "<div class='well col-md-3'>" + employeeArray[i].lastName + "</div>" +
             "<div class='well col-md-3'>" + employeeArray[i].salary + "</div>" +
             "<div class='well col-md-3'>" + employeeArray[i].yearsOfService + "</div>" +
-            "<button class='delete btn btn-danger' data-id='employeeArray[i]._id'>" + 'Delete' + "</button>" +
+            "<button class='delete btn btn-danger' data-id='" + employeeArray[i]._id + "'>Delete</button>" +
         "</div>")
     }
     calcTotalYears();

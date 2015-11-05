@@ -11,7 +11,7 @@ var Schema = mongoose.Schema;
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({expanded: true}));
 
-mongoose.connect('mongodb://localhost/dummy');
+mongoose.connect('mongodb://localhost/mongo_dummy');
 
 mongoose.model('Person', new Schema ({
     "firstName": String,
@@ -33,10 +33,23 @@ router.get("/output", function(req, res){
     })
 });
 
+router.delete('/output', function(req,res){
+    console.log(req.body.id);
+
+    Person.findByIdAndRemove({"_id" : req.body.id}, function(err, data){
+        if(err) console.log(err);
+        res.send(data);
+    });
+});
 
 router.get("/*", function(req, res){
     var file = req.params[0] || "/assets/views/index.html";
     res.sendFile(path.join(__dirname, "../public", file));
 });
+
+
+
+
+
 
 module.exports = router;
