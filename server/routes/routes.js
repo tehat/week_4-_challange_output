@@ -11,15 +11,15 @@ var Schema = mongoose.Schema;
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({expanded: true}));
 
-mongoose.connect('mongodb://localhost/mongo_dummy');
+mongoose.connect('mongodb://localhost/groupwk4challenge');
 
 mongoose.model('Person', new Schema ({
-    "firstName": String,
-    "lastName": String,
+    "name": String,
+    //"lastName": String,
     "salary": String,
-    "yearsOfService":String
+    "years":String
 },
-    {collection:'dummy'}));
+    {collection:'employees'}));
 
 var Person = mongoose.model('Person');
 

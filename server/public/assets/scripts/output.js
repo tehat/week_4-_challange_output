@@ -142,10 +142,10 @@ function appendToDOM(){
     $("#employeeList").empty();
     for(var i = 0; i < employeeArray.length; i++) {
         $("#employeeList").append("<div class='employeedata'>" +
-            "<div class='well col-md-3'>" + employeeArray[i].firstName + "</div>" +
-            "<div class='well col-md-3'>" + employeeArray[i].lastName + "</div>" +
-            "<div class='well col-md-3'>" + employeeArray[i].salary + "</div>" +
-            "<div class='well col-md-3'>" + employeeArray[i].yearsOfService + "</div>" +
+            "<div class='well col-md-4'>" + employeeArray[i].name + "</div>" +
+            //"<div class='well col-md-3'>" + employeeArray[i].lastName + "</div>" +
+            "<div class='well col-md-4'>" + employeeArray[i].salary + "</div>" +
+            "<div class='well col-md-4'>" + employeeArray[i].years + "</div>" +
             "<button class='delete btn btn-danger' data-id='" + employeeArray[i]._id + "'>Delete</button>" +
         "</div>")
     }
